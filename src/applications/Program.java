@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import model.entities.Reservation;
+import model.exception.DomainException;
 
 public class Program {
 	
@@ -41,7 +42,7 @@ public class Program {
 		catch (ParseException e) {
 			System.out.println("Formato de data inválido!");
 		}
-		catch (IllegalArgumentException e) {
+		catch (DomainException e) {
 			//getMessage é a msg escrita na classe Reservation
 			System.out.println("Erro na reserva: " + e.getMessage());
 		}				
