@@ -44,21 +44,20 @@ public class Reservation {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 		
 	}
-	//the methods deixa de ser void e passar a retornar uma String
-	public String updateDates(Date checkIn, Date checkOut) {
+	//vai lançar uma exception caso ocorra, assim vai voltar a ser void
+	public void updateDates(Date checkIn, Date checkOut) {
 		//como testar se as datas de atualização são posterior as datas atuais?
 		Date now = new Date();
 		if (checkIn.before(now) || checkOut.before(now)) {
-			return "Erro na reserva: as datas para atualização devem ser futuras";
+			// uma classe que diz q os argumentos da função são inválidos
+			throw new IllegalArgumentException("Erro na reserva: as datas para atualização devem ser futuras");
 		}
 		if (!checkOut.after(checkIn)) {
-			return "Erro na reserva: a data checkOut deve ser depois da data checkIn";
+			throw new IllegalArgumentException("Erro na reserva: a data checkOut deve ser depois da data checkIn");
 		}
 		//nao havendo erro as datas sao atualizadas
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		//e o retorno é nulo
-		return null;
 	}
 	@Override
 	public String toString() {
