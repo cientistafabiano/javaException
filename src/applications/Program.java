@@ -35,20 +35,14 @@ public class Program {
 			checkIn = sdf.parse(sc.next());
 			System.out.print("Check-out date (dd/MM/yyyy): ");
 			checkOut = sdf.parse(sc.next());
-			
-			//como testar se as datas de atualização são posterior as datas atuais?
-			Date now = new Date();
-			if (checkIn.before(now) || checkOut.before(now)) {
-				System.out.print("Erro na reserva: as datas para atualização devem ser futuras");
-			}
-			else if (!checkOut.after(checkIn)) {
-				System.out.println("Erro na reserva: a data checkOut deve ser depois da data checkIn");
+			// como exemplo didático da aula - method return string	
+			String error =	reserv.updateDates(checkIn, checkOut);
+			if (error != null) {
+				System.out.print("Erro na reserva: " + error);
 			}
 			else {
-				reserv.updateDates(checkIn, checkOut);
-			System.out.print("Reservation: " + reserv);
+				System.out.print("Reservation: " + reserv);
 			}		
 		}		
 		sc.close();
-	}
-}
+	}}
